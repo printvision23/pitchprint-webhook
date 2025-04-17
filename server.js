@@ -4,7 +4,11 @@ const axios = require('axios');
 const ftp = require('basic-ftp');
 const app = express();
 
-app.use(express.json());
+app.use((req, res, next) => {
+    console.log("🪵 Incoming body:", req.body);
+    next();
+  });
+  
 
 app.post('/pitchprint-webhook', async (req, res) => {
     console.log("📩 Webhook received!");
